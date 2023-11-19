@@ -16,8 +16,9 @@ __pycache__
 *.bak
 
 # Ignore migrations for apps (uncomment if not using separate 'migrations' directory)
-*/migrations/
-!*/migrations/__init__.py
+# */migrations
+# !*/migrations/__init__.py
+
 
 # Static files
 staticfiles/
