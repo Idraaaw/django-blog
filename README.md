@@ -12,7 +12,7 @@
 
 ```shell
 # (venv)
-pip install -r requirement.txt
+pip install -r requirements.txt
 ```
 
 ## 项目初始化
