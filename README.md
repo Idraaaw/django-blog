@@ -5,7 +5,7 @@
 ```shell
 > python -m venv venv
 # Windows
-> venv/Scripts/activate
+> venv\Scripts\activate
 ```
 
 ## 安装项目依赖
