@@ -1,0 +1,41 @@
+<div class="card mr-1">
+    
+    <div class="card-body">
+        {% if user.profile.pic %}
+        <div class="text-center mt-3"><img class="card-img-top img-flush" style="width:150px;height:150px;object-fit:cover" src="{{ user.profile.pic.url }}"></div>
+        {% else %}
+        <div class="container mt-1 text-center"><i class="fas fa-9x fa-user"></i></div>
+        {% endif %}
+        <h2 class="card-text text-center">{{ user.first_name }}{{ user.last_name }} </h2>
+    </div>
+    <div class="card-text m-3">
+        <p style="text-indent:2em">{{ user.profile.words }}</p>
+    </div>
+    <div class="card-body text-center">
+
+        {% if user.email %}
+        <span><a class="text-decoration-none" href="https://{{ user.email }}"><strong><i class="fas fa-envelope"></i></strong></a></span>
+        {% endif %}
+        {% if user.profile.website %}
+        <span><a class="ml-3 text-decoration-none" href="{{ user.profile.website }}"><strong><i class="fas fa-link"></i></strong></a></span>
+        {% endif %}
+        {% if user.profile.github %}
+        <span><a class="ml-3 text-decoration-none" href="{{ user.profile.wechat }}"><i class="fab fa-github"></i></a></span>
+        {% endif %}
+        {% if user.profile.qq %}
+        <span><a class="ml-3 text-decoration-none" href="http://wpa.qq.com/msgrd?v=3&uin={{ user.profile.qq }}&site=qq&menu=yes"><i class="fab fa-qq"></i></a></span>
+        {% endif %}
+        {% if user.profile.wechat %}
+        <span><a class="ml-3 text-decoration-none" href="{{ user.profile.wechat }}"><i class="fab fa-weixin"></i></a></span>
+        {% endif %}
+        {% if user.profile.bilibili %}
+        <span><a class="ml-3 text-decoration-none" href="{{ user.profile.bilibili }}"><i class="far fa-caret-square-right"></i></a></span>
+        {% endif %}
+
+    </div>
+    {% if request.user == user %}
+    <div class="card-body">
+        <a class="card-link btn btn-primary" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+    </div>
+    {% endif %}
+</div>

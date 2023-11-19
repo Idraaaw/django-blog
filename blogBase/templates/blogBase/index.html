@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8 col-sm-12">
+        <div class="card">
+            {% if user.profile.bg_image %}
+            <img class="card-img" style="width:100%;height:500px;object-fit:cover;opacity:0.5" src="{{ user.profile.bg_image.url }}" alt="index image">
+            {% endif %}
+            <div class="card-img-overlay">
+            <div class="card-body">
+                {% if request.user.is_authenticated %}
+                <h2 class="card-title">Hi! {{ request.user }}</h2>
+                {% else %}
+                <h2 class="card-title">Hi! Visitor</h2>
+                {% endif %}
+                <h1 class="card-body text-center">Welcome to my blog</h1>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-1"></div>
+    <div class="col-md-3">
+        {% include 'accounts/profile.html' %}
+    </div>
+</div>
+{% endblock %}

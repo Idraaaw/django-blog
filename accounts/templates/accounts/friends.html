@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Friends{% endblock %}
+
+{% block content %}
+<div class="container col-md-8 mb-5">
+    <h3 class="text-center">欢迎加入Idraaaw的大家庭！</h3>
+    {% if request.user in unfriends %}
+    <div class="text-center"><a class="btn btn-primary" role="button" href="{% url 'accounts:apply_join_friends' request.user %}">加入友链</a></div>
+    {% endif %}
+</div>
+<div class="card-columns">
+{% for user in friends %}
+{% include "accounts/profile.html" %}
+{% endfor %}
+</div>
+
+{% endblock %}

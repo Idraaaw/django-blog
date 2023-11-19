@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ article.title }}{% endblock %}
+{% block style_css %}
+<style>
+    body {
+        background-color : #758a99;
+    }
+
+    .card-img {
+        height : 200px;
+        object-fit : cover;
+        object-position : center;
+    }
+</style>
+{% endblock %}
+{% block content %}
+
+<div class="container col-md-10">
+
+<div class="card mb-2">
+    <div class="card-body">
+        <div class="jumbotron">
+            <img class="card-img" src="{{ article.pic.url }}">
+            <h1 class="display-6">{{ article.title }}</h1>
+            <p class="lead"></p>
+            <hr class="my-4">
+            <p>{{ article.formatted_markdown|safe|linebreaks }}</p>
+            <hr>
+        </div>
+    </div>
+</div>
+<div>
+{% include "blogBase/comment.html "%}
+</div>
+
+</div>
+
+{% endblock %}

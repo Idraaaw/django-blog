@@ -1,0 +1,43 @@
+{% load widget_tweaks %}
+
+<div class="card">
+    <div class="card-body">
+    {% for comment in article.comments.all %}
+    <div class="media mb-3">
+        <img class="mr-3" src="{{ comment.user.profile.pic.url }}" alt="" style="width:64px;height:64px;object-fit:cover" >
+        <div class="media-body">
+            <h6 class="mt-0"><span class="badge badge-pill badge-dark">{{ comment.user.first_name }}{{ comment.user.last_name }}</span></h6>
+            <p>{{ comment.text }}</p>
+            <hr>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+
+    <div class="card-body">
+    <div class="row">
+    <div class="col-md-6">
+    <form method="post" action="{% url 'blogBase:add_comment' article.id %}">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        {% if field.errors %}
+        <div class="alert alert-warningalert-dismissible fade show" role='alert'>
+            {{ field.errors }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endif %}
+
+        {{ field }}
+    </div>
+    {% endfor %}
+    <div class="card-text text-right"><button type="submit" class="btn btn-primary">提交</button></div>
+    </form>
+    </div>
+    </div>
+    </div>
+
+</div>
+
