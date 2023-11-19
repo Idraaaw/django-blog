@@ -13,7 +13,6 @@ User = get_user_model()
     user001 : password001
 '''
 # Create your views here.
-superuser = User.objects.filter(is_superuser=True).first()
 
 def register(request):
     if request.user.is_authenticated:
@@ -38,6 +37,7 @@ def register(request):
 @login_required
 def profile(request,username):
     user = User.objects.get(username=username)
+    superuser = User.objects.filter(is_superuser=True).first()
     join_users_profile = UserProfile.objects.filter(is_apply_followers=True)
     return render(request,'accounts/users_profile.html',{'user':user,'join_users_profile':join_users_profile,'superuser':superuser})
 
@@ -53,6 +53,7 @@ def edit_profile(request):
     return render(request,'accounts/edit_profile.html',{'form':form})
 
 def friends(request):
+    superuser = User.objects.filter(is_superuser=True).first()
     friends = superuser.followers.all()
     unfriends = User.objects.exclude(id__in=friends).exclude(username=superuser)
     content = {
